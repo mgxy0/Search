@@ -8,8 +8,11 @@ Questo script Python permette di cercare file nel sistema con vari filtri e di a
 - Filtra i file per estensione
 - Filtra i file per nome
 - Filtra i file per data di modifica (ultime 24 ore, ultimo mese, ultimo anno)
+- Filtra i file per dimensione
+- Filtra i file per permessi
 - Cerca ricorsivamente o non ricorsivamente
 - Apre i file trovati con programmi predefiniti
+- Copia i file trovati in una cartella sul desktop
 
 ## Utilizzo ⚙️
 
@@ -17,37 +20,37 @@ Questo script Python permette di cercare file nel sistema con vari filtri e di a
 
 - Cerca tutti i file nel percorso corrente:
   ```sh
-  python3 search.py .
+  python3 search_files.py .
   ```
 
 - Cerca tutti i file PDF nel percorso corrente e aprili:
   ```sh
-  python3 search.py . -e .pdf
+  python3 search_files.py . -e .pdf
   ```
 
 - Cerca tutti i file di tipo immagine nel percorso corrente e aprili:
   ```sh
-  python3 search.py . -t immagine
+  python3 search_files.py . -t image
   ```
 
 - Cerca tutti i file di tipo immagine modificati nelle ultime 24 ore:
   ```sh
-  python3 search.py . -t immagine -f 24h
+  python3 search_files.py . -t image -f 24h
   ```
 
 - Cerca tutti i file che contengono "report" nel nome e aprili:
   ```sh
-  python3 search.py . -n report
+  python3 search_files.py . -n report
   ```
 
 - Cerca tutti i file di tipo video non ricorsivamente e aprili:
   ```sh
-  python3 search.py . -t video -r
+  python3 search_files.py . -t video -r
   ```
 
 - Cerca tutti i file di configurazione del server nel percorso corrente e aprili:
   ```sh
-  python3 search.py . -t server
+  python3 search_files.py . -t server
   ```
 
 ## Opzioni 🔤
@@ -80,3 +83,5 @@ Questo script Python permette di cercare file nel sistema con vari filtri e di a
 ## Licenza 📄
 
 GNU GPLv3 🐃
+
+2024 - mgxy0 / mark1n0
