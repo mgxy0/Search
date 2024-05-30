@@ -1,85 +1,85 @@
-# SEARCH 🔎
+### SEARCH 🔎
 
-Questo script Python permette di cercare file nel sistema con vari filtri e di aprirli automaticamente con uno dei programmi predefiniti per il tipo di file specificato. È stato progettato per funzionare in modo simile al comando `find` di Linux.
+This Python script allows you to search for files on your system with various filters and copy them automatically to a folder created on the desktop. It is designed to function similarly to the `find` command in Linux.
 
-## Caratteristiche 🩻
+## Features 🩻
 
-- Filtra i file per tipo (immagine, video, documento, audio, archivio, server)
-- Filtra i file per estensione
-- Filtra i file per nome
-- Filtra i file per data di modifica (ultime 24 ore, ultimo mese, ultimo anno)
-- Filtra i file per dimensione
-- Filtra i file per permessi
-- Cerca ricorsivamente o non ricorsivamente
-- Copia i file trovati in una cartella creata automaticamente sul desktop
+- Filter files by type (image, video, document, audio, archive, server)
+- Filter files by extension
+- Filter files by name
+- Filter files by modification date (last 24 hours, last month, last year)
+- Filter files by size
+- Filter files by permissions
+- Search recursively or non-recursively
+- Copy the found files to an automatically created folder on the desktop
 
-## Utilizzo ⚙️
+## Usage ⚙️
 
-### Esempi d'uso:
+### Usage Examples:
 
-- Cerca tutti i file nel percorso corrente:
+- Search for all files in the current path:
   ```sh
-  python3 search.py .
+  python3 search_files.py .
   ```
 
-- Cerca tutti i file PDF nel percorso corrente e aprili:
+- Search for all PDF files in the current path:
   ```sh
-  python3 search.py . -e .pdf
+  python3 search_files.py . -e .pdf
   ```
 
-- Cerca tutti i file di tipo immagine nel percorso corrente e aprili:
+- Search for all image files in the current path:
   ```sh
-  python3 search.py . -t image
+  python3 search_files.py . -t image
   ```
 
-- Cerca tutti i file di tipo immagine modificati nelle ultime 24 ore:
+- Search for all image files modified in the last 24 hours:
   ```sh
-  python3 search.py . -t image -f 24h
+  python3 search_files.py . -t image -f 24h
   ```
 
-- Cerca tutti i file che contengono "report" nel nome e aprili:
+- Search for all files containing "report" in the name:
   ```sh
-  python3 search.py . -n report
+  python3 search_files.py . -n report
   ```
 
-- Cerca tutti i file di tipo video non ricorsivamente e aprili:
+- Search for all video files non-recursively:
   ```sh
-  python3 search.py . -t video -r
+  python3 search_files.py . -t video -r
   ```
 
-- Cerca tutti i file di configurazione del server nel percorso corrente e aprili:
+- Search for all server configuration files in the current path:
   ```sh
-  python3 search.py . -t server
+  python3 search_files.py . -t server
   ```
 
-## Opzioni 🔤
+## Options 🔤
 
-- `--tipo-file` (`-t`): Filtra per tipo di file (es. immagine, video, documento, audio, archivio, server)
-- `--estensione` (`-e`): Filtra i file per estensione (es. `.txt`, `.pdf`)
-- `--nome` (`-n`): Filtra i file per nome (es. "report")
-- `--no-ricorsivo` (`-r`): Cerca non ricorsivamente nelle directory (default è ricorsivo)
-- `--filtro-data` (`-f`): Filtra i file per data di modifica (24h, mese, anno)
+- `--file-type` (`-t`): Filter by file type (e.g., image, video, document, audio, archive, server)
+- `--extension` (`-e`): Filter files by extension (e.g., `.txt`, `.pdf`)
+- `--name` (`-n`): Filter files by name (e.g., "report")
+- `--no-recursive` (`-r`): Search non-recursively in directories (default is recursive)
+- `--date-filter` (`-f`): Filter files by modification date (24h, month, year)
 
-## Installazione 📦
+## Installation 📦
 
-1. Clona il repository:
+1. Clone the repository:
    ```sh
    git clone https://github.com/mgxy0/search.git
    ```
-2. Spostati nella directory del repository:
+2. Navigate to the repository directory:
    ```sh
    cd search
    ```
-3. Esegui lo script:
+3. Run the script:
    ```sh
-   python search.py [opzioni]
+   python search_files.py [options]
    ```
 
-## Requisiti 🗃️
+## Requirements 🗃️
 
 - Python 3.x 🐍
 
-## Licenza 📄
+## License 📄
 
 GNU GPLv3 🐃
 
