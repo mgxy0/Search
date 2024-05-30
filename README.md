@@ -62,11 +62,11 @@ Questo script Python permette di cercare file nel sistema con vari filtri e di a
 
 1. Clona il repository:
    ```sh
-   git clone https://github.com/tuo-username/tuo-repository.git
+   git clone https://github.com/mgxy0/search.git
    ```
 2. Spostati nella directory del repository:
    ```sh
-   cd tuo-repository
+   cd search
    ```
 3. Esegui lo script:
    ```sh
@@ -79,4 +79,4 @@ Questo script Python permette di cercare file nel sistema con vari filtri e di a
 
 ## Licenza
 
-MIT
+GNU3
