@@ -11,8 +11,7 @@ Questo script Python permette di cercare file nel sistema con vari filtri e di a
 - Filtra i file per dimensione
 - Filtra i file per permessi
 - Cerca ricorsivamente o non ricorsivamente
-- Apre i file trovati con programmi predefiniti
-- Copia i file trovati in una cartella sul desktop
+- Copia i file trovati in una cartella creata automaticamente sul desktop
 
 ## Utilizzo ⚙️
 
