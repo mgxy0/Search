@@ -15,6 +15,21 @@ This Python script allows you to search for files on your system with various fi
 - Search recursively or non-recursively
 - Copy the found files to an automatically created folder on the desktop
 
+## Installation 📦
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/mgxy0/search.git
+   ```
+2. Navigate to the repository directory:
+   ```sh
+   cd search
+   ```
+3. Run the script:
+   ```sh
+   python search.py [options]
+   ```
+
 ## Usage ⚙️
 
 ### Usage Examples:
@@ -61,21 +76,6 @@ This Python script allows you to search for files on your system with various fi
 - `--name` (`-n`): Filter files by name (e.g., "report")
 - `--no-recursive` (`-r`): Search non-recursively in directories (default is recursive)
 - `--date-filter` (`-f`): Filter files by modification date (24h, month, year)
-
-## Installation 📦
-
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/mgxy0/search.git
-   ```
-2. Navigate to the repository directory:
-   ```sh
-   cd search
-   ```
-3. Run the script:
-   ```sh
-   python search.py [options]
-   ```
 
 ## Requirements 🗃️
 
