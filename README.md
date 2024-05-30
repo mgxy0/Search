@@ -1,4 +1,4 @@
-### SEARCH 🔎
+# SEARCH 🔎
 
 This Python script allows you to search for files on your system with various filters and copy them automatically to a folder created on the desktop. It is designed to function similarly to the `find` command in Linux.
 
