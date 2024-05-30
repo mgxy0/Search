@@ -1,0 +1,95 @@
+
+ Guida all'Uso di search.py
+
+ Utilizzo Base
+
+```
+usage: search.py [-h] [-t FILE_TYPE] [-e EXTENSION] [-n NAME] [-r] [-f DATE_FILTER] [-s SIZE_FILTER]
+                 [-p PERM_FILTER] [-x EXCLUDE_DIRS [EXCLUDE_DIRS ...]]
+                 path
+```
+
+ Argomenti Posizionali
+
+- path: La directory di partenza per la ricerca.
+
+ Opzioni
+
+- -h, --help: Mostra il messaggio di aiuto ed esce.
+- -t FILE_TYPE, --file-type FILE_TYPE: Filtra per tipo di file (ad esempio, image, video, document, audio, archive, server).
+- -e EXTENSION, --extension EXTENSION: Filtra i file per estensione.
+- -n NAME, --name NAME: Filtra i file per nome.
+- -r, --no-recursive: Cerca nei directory in modo non ricorsivo.
+- -f DATE_FILTER, --date-filter DATE_FILTER: Filtra i file per data di modifica (24h, month, year).
+- -s SIZE_FILTER, --size-filter SIZE_FILTER: Filtra i file per dimensione (ad esempio, 10k, 20m, 1g).
+- -p PERM_FILTER, --perm-filter PERM_FILTER: Filtra i file per permessi (ad esempio, 755, 644).
+- -x EXCLUDE_DIRS [EXCLUDE_DIRS ...], --exclude-dirs EXCLUDE_DIRS [EXCLUDE_DIRS ...]: Esclude specifici directory dalla ricerca.
+
+ Esempi di Utilizzo
+
+ 1. Ricerca Base in una Directory
+
+```sh
+python search.py /path/to/directory
+```
+
+ 2. Filtra per Tipo di File
+
+```sh
+python search.py /path/to/directory -t image
+```
+_Tipi di file disponibili: image, video, document, audio, archive, server._
+
+ 3. Filtra per Estensione
+
+```sh
+python search.py /path/to/directory -e .txt
+```
+
+ 4. Filtra per Nome
+
+```sh
+python search.py /path/to/directory -n example
+```
+
+ 5. Ricerca Non Ricorsiva
+
+```sh
+python search.py /path/to/directory -r
+```
+
+ 6. Filtra per Data
+
+```sh
+python search.py /path/to/directory -f 24h
+```
+_Altre opzioni per il filtro data: month, year._
+
+ 7. Filtra per Dimensione
+
+```sh
+python search.py /path/to/directory -s 10m
+```
+_La dimensione può essere specificata in k (kilobytes), m (megabytes), o g (gigabytes)._
+
+ 8. Filtra per Permessi
+
+```sh
+python search.py /path/to/directory -p 755
+```
+
+ 9. Escludi Specifici Directory
+
+```sh
+python search.py /path/to/directory -x dir1 dir2
+```
+
+ 10. Combinazione di Più Filtri
+
+```sh
+python search.py /path/to/directory -t document -e .pdf -n report -f month -s 1m -p 644 -x temp backup
+```
+
+Conclusione
+
+Questa guida fornisce una panoramica completa di come utilizzare search.py per trovare e aprire file specifici in base a vari criteri. Sperimenta con le diverse opzioni per ottimizzare la tua ricerca in base alle tue esigenze specifiche.
