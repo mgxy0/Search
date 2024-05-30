@@ -102,7 +102,7 @@ def search_files(path, file_type=None, extension=None, name=None, recursive=True
             open_file(file_path, file_type)
 
 def main():
-    parser = argparse.ArgumentParser(description=" --- SEARCH --- created by mgxy0 --- 2024 GNU GPLv3 --- ")
+    parser = argparse.ArgumentParser(description="   SEARCH --- created by mgxy0 License: 2024 GNU GPLv3   ")
     parser.add_argument("path", help="The directory path to start the search")
     parser.add_argument("-t", "--file-type", help="Filter by file type (e.g., image, video, document, audio, archive, server)")
     parser.add_argument("-e", "--extension", help="Filter files by extension")
