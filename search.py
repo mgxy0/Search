@@ -1,4 +1,5 @@
 import os
+import shutil
 import subprocess
 import argparse
 import time
@@ -67,14 +68,9 @@ def filter_by_permissions(file_path, perm_filter):
     file_permissions = oct(os.stat(file_path).st_mode)[-3:]
     return file_permissions == perm_filter
 
-def search_files(path, file_type=None, extension=None, name=None, recursive=True, date_filter=None, size_filter=None, perm_filter=None, exclude_dirs=None):
-    exclude_dirs = exclude_dirs or []
+def search_files(path, file_type=None, extension=None, name=None, date_filter=None, size_filter=None, perm_filter=None):
+    found_files = []
     for root, dirs, files in os.walk(path):
-        if not recursive:
-            del dirs[:]
-        
-        dirs[:] = [d for d in dirs if not is_system_path(os.path.join(root, d)) and d not in exclude_dirs]
-
         for file in files:
             file_path = os.path.join(root, file)
             if is_system_path(file_path):
@@ -98,27 +94,48 @@ def search_files(path, file_type=None, extension=None, name=None, recursive=True
             if perm_filter and not filter_by_permissions(file_path, perm_filter):
                 continue
             
-            print(file_path)
-            open_file(file_path, file_type)
+            found_files.append(file_path)
+    
+    return found_files
+
+def create_desktop_folder(folder_name):
+    desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
+    target_folder = os.path.join(desktop_path, folder_name)
+    os.makedirs(target_folder, exist_ok=True)
+    return target_folder
+
+def copy_files_to_folder(files, target_folder):
+    for file in files:
+        try:
+            shutil.copy(file, target_folder)
+            print(f"Copied {file} to {target_folder}")
+        except Exception as e:
+            print(f"Failed to copy {file} to {target_folder}: {e}")
 
 def main():
-    parser = argparse.ArgumentParser(description="   SEARCH --- created by mgxy0 License: 2024 GNU GPLv3   ")
+    parser = argparse.ArgumentParser(description="SEARCH --- created by mgxy0 License: 2024 GNU GPLv3")
     parser.add_argument("path", help="The directory path to start the search")
     parser.add_argument("-t", "--file-type", help="Filter by file type (e.g., image, video, document, audio, archive, server)")
     parser.add_argument("-e", "--extension", help="Filter files by extension")
     parser.add_argument("-n", "--name", help="Filter files by name")
-    parser.add_argument("-r", "--no-recursive", help="Search non-recursively in directories", action="store_true", default=False)
     parser.add_argument("-f", "--date-filter", help="Filter files by modification date (24h, month, year)")
     parser.add_argument("-s", "--size-filter", help="Filter files by size (e.g., 10k, 20m, 1g)")
     parser.add_argument("-p", "--perm-filter", help="Filter files by permissions (e.g., 755, 644)")
-    parser.add_argument("-x", "--exclude-dirs", help="Exclude specific directories from the search", nargs='+')
 
     args = parser.parse_args()
     
-    search_files(
-        args.path, file_type=args.file_type, extension=args.extension, name=args.name, recursive=not args.no_recursive, date_filter=args.date_filter,
-        size_filter=args.size_filter, perm_filter=args.perm_filter, exclude_dirs=args.exclude_dirs
+    found_files = search_files(
+        args.path, file_type=args.file_type, extension=args.extension, name=args.name, date_filter=args.date_filter,
+        size_filter=args.size_filter, perm_filter=args.perm_filter
     )
+
+    if found_files:
+        folder_name = "Found_Files"
+        target_folder = create_desktop_folder(folder_name)
+        copy_files_to_folder(found_files, target_folder)
+        print(f"\nAll found files have been copied to: {target_folder}")
+    else:
+        print("No files found.")
 
 if __name__ == "__main__":
     main()
