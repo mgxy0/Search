@@ -1,8 +1,8 @@
-## SEARCH
+## SEARCH 🔎
 
 Questo script Python permette di cercare file nel sistema con vari filtri e di aprirli automaticamente con uno dei programmi predefiniti per il tipo di file specificato. È stato progettato per funzionare in modo simile al comando `find` di Linux.
 
-## Caratteristiche
+## Caratteristiche 🩻
 
 - Filtra i file per tipo (immagine, video, documento, audio, archivio, server)
 - Filtra i file per estensione
@@ -11,7 +11,7 @@ Questo script Python permette di cercare file nel sistema con vari filtri e di a
 - Cerca ricorsivamente o non ricorsivamente
 - Apre i file trovati con programmi predefiniti
 
-## Utilizzo
+## Utilizzo ⚙️
 
 ### Esempi d'uso:
 
@@ -50,7 +50,7 @@ Questo script Python permette di cercare file nel sistema con vari filtri e di a
   python search.py . -t server
   ```
 
-## Opzioni
+## Opzioni 🔤
 
 - `--tipo-file` (`-t`): Filtra per tipo di file (es. immagine, video, documento, audio, archivio, server)
 - `--estensione` (`-e`): Filtra i file per estensione (es. `.txt`, `.pdf`)
@@ -58,7 +58,7 @@ Questo script Python permette di cercare file nel sistema con vari filtri e di a
 - `--no-ricorsivo` (`-r`): Cerca non ricorsivamente nelle directory (default è ricorsivo)
 - `--filtro-data` (`-f`): Filtra i file per data di modifica (24h, mese, anno)
 
-## Installazione
+## Installazione 📦
 
 1. Clona il repository:
    ```sh
@@ -73,10 +73,10 @@ Questo script Python permette di cercare file nel sistema con vari filtri e di a
    python search.py [opzioni]
    ```
 
-## Requisiti
+## Requisiti 🗃️
 
-- Python 3.x
+- Python 3.x 🐍
 
-## Licenza
+## Licenza 📄
 
-GNU gpl3
+GNU GPLv3 🐃
