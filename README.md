@@ -1,4 +1,4 @@
-### SEARCH 🔎
+# SEARCH 🔎
 
 Questo script Python permette di cercare file nel sistema con vari filtri e di aprirli automaticamente con uno dei programmi predefiniti per il tipo di file specificato. È stato progettato per funzionare in modo simile al comando `find` di Linux.
 
