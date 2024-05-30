@@ -1,94 +1,94 @@
-Guida all'Uso di search.py by mgxy0 / mark1n0
+Guide to Using search_files.py by mgxy0 / mark1n0
 
-Utilizzo Base
+Basic Usage
 
 ```
-usage: search.py [-h] [-t FILE_TYPE] [-e EXTENSION] [-n NAME] [-r] [-f DATE_FILTER] [-s SIZE_FILTER]
+usage: search_files.py [-h] [-t FILE_TYPE] [-e EXTENSION] [-n NAME] [-r] [-f DATE_FILTER] [-s SIZE_FILTER]
                        [-p PERM_FILTER] [-x EXCLUDE_DIRS [EXCLUDE_DIRS ...]]
                        path
 ```
 
-Argomenti Posizionali
+Positional Arguments
 
-- path: La directory di partenza per la ricerca.
+- path: The starting directory for the search.
 
-Opzioni
+Options
 
-- -h, --help: Mostra il messaggio di aiuto ed esce.
-- -t FILE_TYPE, --file-type FILE_TYPE: Filtra per tipo di file (ad esempio, image, video, document, audio, archive, server).
-- -e EXTENSION, --extension EXTENSION: Filtra i file per estensione.
-- -n NAME, --name NAME: Filtra i file per nome.
-- -r, --no-recursive: Cerca nei directory in modo non ricorsivo.
-- -f DATE_FILTER, --date-filter DATE_FILTER: Filtra i file per data di modifica (24h, month, year).
-- -s SIZE_FILTER, --size-filter SIZE_FILTER: Filtra i file per dimensione (ad esempio, 10k, 20m, 1g).
-- -p PERM_FILTER, --perm-filter PERM_FILTER: Filtra i file per permessi (ad esempio, 755, 644).
-- -x EXCLUDE_DIRS [EXCLUDE_DIRS ...], --exclude-dirs EXCLUDE_DIRS [EXCLUDE_DIRS ...]: Esclude specifici directory dalla ricerca.
+- -h, --help: Show the help message and exit.
+- -t FILE_TYPE, --file-type FILE_TYPE: Filter by file type (e.g., image, video, document, audio, archive, server).
+- -e EXTENSION, --extension EXTENSION: Filter files by extension.
+- -n NAME, --name NAME: Filter files by name.
+- -r, --no-recursive: Search directories non-recursively.
+- -f DATE_FILTER, --date-filter DATE_FILTER: Filter files by modification date (24h, month, year).
+- -s SIZE_FILTER, --size-filter SIZE_FILTER: Filter files by size (e.g., 10k, 20m, 1g).
+- -p PERM_FILTER, --perm-filter PERM_FILTER: Filter files by permissions (e.g., 755, 644).
+- -x EXCLUDE_DIRS [EXCLUDE_DIRS ...], --exclude-dirs EXCLUDE_DIRS [EXCLUDE_DIRS ...]: Exclude specific directories from the search.
 
-Esempi di Utilizzo
+Usage Examples
 
-1. Ricerca Base in una Directory
-
-```sh
-python search.py /path/to/directory
-```
-
-2. Filtra per Tipo di File
+1. Basic Search in a Directory
 
 ```sh
-python search.py /path/to/directory -t image
+python search_files.py /path/to/directory
 ```
-Tipi di file disponibili: image, video, document, audio, archive, server.
 
-3. Filtra per Estensione
+2. Filter by File Type
 
 ```sh
-python search.py /path/to/directory -e .txt
+python search_files.py /path/to/directory -t image
 ```
+Available file types: image, video, document, audio, archive, server.
 
-4. Filtra per Nome
+3. Filter by Extension
 
 ```sh
-python search.py /path/to/directory -n example
+python search_files.py /path/to/directory -e .txt
 ```
 
-5. Ricerca Non Ricorsiva
+4. Filter by Name
 
 ```sh
-python search.py /path/to/directory -r
+python search_files.py /path/to/directory -n example
 ```
 
-6. Filtra per Data
+5. Non-Recursive Search
 
 ```sh
-python search.py /path/to/directory -f 24h
+python search_files.py /path/to/directory -r
 ```
-Altre opzioni per il filtro data: month, year.
 
-7. Filtra per Dimensione
+6. Filter by Date
 
 ```sh
-python search.py /path/to/directory -s 10m
+python search_files.py /path/to/directory -f 24h
 ```
-La dimensione può essere specificata in k (kilobytes), m (megabytes), o g (gigabytes).
+Other date filter options: month, year.
 
-8. Filtra per Permessi
+7. Filter by Size
 
 ```sh
-python search.py /path/to/directory -p 755
+python search_files.py /path/to/directory -s 10m
 ```
+Size can be specified in k (kilobytes), m (megabytes), or g (gigabytes).
 
-9. Escludi Specifici Directory
+8. Filter by Permissions
 
 ```sh
-python search.py /path/to/directory -x dir1 dir2
+python search_files.py /path/to/directory -p 755
 ```
 
-10. Combinazione di Più Filtri
+9. Exclude Specific Directories
 
 ```sh
-python search.py /path/to/directory -t document -e .pdf -n report -f month -s 1m -p 644 -x temp backup
+python search_files.py /path/to/directory -x dir1 dir2
 ```
 
-Conclusione
+10. Combining Multiple Filters
 
-Questa guida fornisce una panoramica completa di come utilizzare search.py per trovare e copiare file specifici in base a vari criteri. Sperimenta con le diverse opzioni per ottimizzare la tua ricerca in base alle tue esigenze specifiche.
+```sh
+python search_files.py /path/to/directory -t document -e .pdf -n report -f month -s 1m -p 644 -x temp backup
+```
+
+Conclusion
+
+This guide provides a comprehensive overview of how to use search_files.py to find and copy specific files based on various criteria. Experiment with different options to optimize your search according to your specific needs.
