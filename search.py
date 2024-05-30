@@ -50,12 +50,30 @@ def filter_by_date(file_path, date_filter):
     else:
         return True
 
-def search_files(path, file_type=None, extension=None, name=None, recursive=True, date_filter=None):
+def filter_by_size(file_path, size_filter):
+    file_size = os.path.getsize(file_path)
+    if size_filter.endswith('k'):
+        size_filter = int(size_filter[:-1]) * 1024
+    elif size_filter.endswith('m'):
+        size_filter = int(size_filter[:-1]) * 1024 * 1024
+    elif size_filter.endswith('g'):
+        size_filter = int(size_filter[:-1]) * 1024 * 1024 * 1024
+    else:
+        size_filter = int(size_filter)
+    
+    return file_size <= size_filter
+
+def filter_by_permissions(file_path, perm_filter):
+    file_permissions = oct(os.stat(file_path).st_mode)[-3:]
+    return file_permissions == perm_filter
+
+def search_files(path, file_type=None, extension=None, name=None, recursive=True, date_filter=None, size_filter=None, perm_filter=None, exclude_dirs=None):
+    exclude_dirs = exclude_dirs or []
     for root, dirs, files in os.walk(path):
         if not recursive:
             del dirs[:]
         
-        dirs[:] = [d for d in dirs if not is_system_path(os.path.join(root, d))]
+        dirs[:] = [d for d in dirs if not is_system_path(os.path.join(root, d)) and d not in exclude_dirs]
 
         for file in files:
             file_path = os.path.join(root, file)
@@ -73,6 +91,12 @@ def search_files(path, file_type=None, extension=None, name=None, recursive=True
             
             if date_filter and not filter_by_date(file_path, date_filter):
                 continue
+
+            if size_filter and not filter_by_size(file_path, size_filter):
+                continue
+
+            if perm_filter and not filter_by_permissions(file_path, perm_filter):
+                continue
             
             print(file_path)
             open_file(file_path, file_type)
@@ -85,13 +109,16 @@ def main():
     parser.add_argument("-n", "--name", help="Filter files by name")
     parser.add_argument("-r", "--no-recursive", help="Search non-recursively in directories", action="store_true", default=False)
     parser.add_argument("-f", "--date-filter", help="Filter files by modification date (24h, month, year)")
+    parser.add_argument("-s", "--size-filter", help="Filter files by size (e.g., 10k, 20m, 1g)")
+    parser.add_argument("-p", "--perm-filter", help="Filter files by permissions (e.g., 755, 644)")
+    parser.add_argument("-x", "--exclude-dirs", help="Exclude specific directories from the search", nargs='+')
 
     args = parser.parse_args()
     
     search_files(
-        args.path, file_type=args.file_type, extension=args.extension, name=args.name, recursive=not args.no_recursive, date_filter=args.date_filter
+        args.path, file_type=args.file_type, extension=args.extension, name=args.name, recursive=not args.no_recursive, date_filter=args.date_filter,
+        size_filter=args.size_filter, perm_filter=args.perm_filter, exclude_dirs=args.exclude_dirs
     )
 
 if __name__ == "__main__":
     main()
-
