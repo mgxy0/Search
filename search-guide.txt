@@ -29,64 +29,64 @@ Usage Examples
 1. Basic Search in a Directory
 
 ```sh
-python search_files.py /path/to/directory
+python search.py /path/to/directory
 ```
 
 2. Filter by File Type
 
 ```sh
-python search_files.py /path/to/directory -t image
+python search.py /path/to/directory -t image
 ```
 Available file types: image, video, document, audio, archive, server.
 
 3. Filter by Extension
 
 ```sh
-python search_files.py /path/to/directory -e .txt
+python search.py /path/to/directory -e .txt
 ```
 
 4. Filter by Name
 
 ```sh
-python search_files.py /path/to/directory -n example
+python search.py /path/to/directory -n example
 ```
 
 5. Non-Recursive Search
 
 ```sh
-python search_files.py /path/to/directory -r
+python search.py /path/to/directory -r
 ```
 
 6. Filter by Date
 
 ```sh
-python search_files.py /path/to/directory -f 24h
+python search.py /path/to/directory -f 24h
 ```
 Other date filter options: month, year.
 
 7. Filter by Size
 
 ```sh
-python search_files.py /path/to/directory -s 10m
+python search_.py /path/to/directory -s 10m
 ```
 Size can be specified in k (kilobytes), m (megabytes), or g (gigabytes).
 
 8. Filter by Permissions
 
 ```sh
-python search_files.py /path/to/directory -p 755
+python search.py /path/to/directory -p 755
 ```
 
 9. Exclude Specific Directories
 
 ```sh
-python search_files.py /path/to/directory -x dir1 dir2
+python search.py /path/to/directory -x dir1 dir2
 ```
 
 10. Combining Multiple Filters
 
 ```sh
-python search_files.py /path/to/directory -t document -e .pdf -n report -f month -s 1m -p 644 -x temp backup
+python search.py /path/to/directory -t document -e .pdf -n report -f month -s 1m -p 644 -x temp backup
 ```
 
 Conclusion
