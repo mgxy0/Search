@@ -21,37 +21,37 @@ This Python script allows you to search for files on your system with various fi
 
 - Search for all files in the current path:
   ```sh
-  python3 search.py .
+  python3 search.py /path/to/search
   ```
 
 - Search for all PDF files in the current path:
   ```sh
-  python3 search.py . -e .pdf
+  python3 search.py /path/to/search -e .pdf
   ```
 
 - Search for all image files in the current path:
   ```sh
-  python3 search.py . -t image
+  python3 search.py /path/to/search -t image
   ```
 
 - Search for all image files modified in the last 24 hours:
   ```sh
-  python3 search.py . -t image -f 24h
+  python3 search.py /path/to/search -t image -f 24h
   ```
 
 - Search for all files containing "report" in the name:
   ```sh
-  python3 search.py . -n report
+  python3 search.py /path/to/search -n report
   ```
 
 - Search for all video files non-recursively:
   ```sh
-  python3 search.py . -t video -r
+  python3 search.py /path/to/search -t video -r
   ```
 
 - Search for all server configuration files in the current path:
   ```sh
-  python3 search.py . -t server
+  python3 search.py /path/to/search -t server
   ```
 
 ## Options 🔤
