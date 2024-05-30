@@ -79,4 +79,4 @@ Questo script Python permette di cercare file nel sistema con vari filtri e di a
 
 ## Licenza
 
-GNU3
+GNU gpl3
