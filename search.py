@@ -15,8 +15,8 @@ FILE_TYPES = {
 OPEN_PROGRAMS = {
     'image': ['open -a Preview', 'open -a Photos', 'open -a Safari'],
     'video': ['open -a QuickTime Player', 'open -a VLC', 'open -a Safari'],
-    'document': ['open -a Preview', 'open -a Microsoft Word', 'open -a TextEdit'],
-    'audio': ['open -a iTunes', 'open -a QuickTime Player', 'open -a Safari'],
+    'document': ['open -a Preview', 'open -a Pages', 'open -a TextEdit'],
+    'audio': ['open -a Music', 'open -a QuickTime Player', 'open -a Safari'],
     'archive': ['open -a Archive Utility', 'open -a The Unarchiver', 'open -a Safari'],
     'server': ['open -a TextEdit', 'open -a Visual Studio Code', 'open -a Terminal']
 }
