@@ -3,101 +3,95 @@ import subprocess
 import argparse
 import time
 
-# Definisci i filtri per tipo di file
-TIPI_DI_FILE = {
-    'immagine': ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff'],
+FILE_TYPES = {
+    'image': ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff'],
     'video': ['.mp4', '.avi', '.mov', '.mkv', '.flv'],
-    'documento': ['.pdf', '.doc', '.docx', '.txt', '.xls', '.xlsx'],
+    'document': ['.pdf', '.doc', '.docx', '.txt', '.xls', '.xlsx'],
     'audio': ['.mp3', '.wav', '.aac', '.flac'],
-    'archivio': ['.zip', '.rar', '.tar', '.gz'],
+    'archive': ['.zip', '.rar', '.tar', '.gz'],
     'server': ['.conf', '.log', '.sh', '.service', '.env']
 }
 
-# Associa i tipi di file a programmi specifici
-PROGRAMMI_APERTURA = {
-    'immagine': ['open -a Preview', 'open -a Photos', 'open -a Safari'],
+OPEN_PROGRAMS = {
+    'image': ['open -a Preview', 'open -a Photos', 'open -a Safari'],
     'video': ['open -a QuickTime Player', 'open -a VLC', 'open -a Safari'],
-    'documento': ['open -a Preview', 'open -a Microsoft Word', 'open -a TextEdit'],
+    'document': ['open -a Preview', 'open -a Microsoft Word', 'open -a TextEdit'],
     'audio': ['open -a iTunes', 'open -a QuickTime Player', 'open -a Safari'],
-    'archivio': ['open -a Archive Utility', 'open -a The Unarchiver', 'open -a Safari'],
+    'archive': ['open -a Archive Utility', 'open -a The Unarchiver', 'open -a Safari'],
     'server': ['open -a TextEdit', 'open -a Visual Studio Code', 'open -a Terminal']
 }
 
-# Elenco delle directory di sistema da escludere
 SYSTEM_DIRS = ['/System', '/Library', '/bin', '/sbin', '/usr']
 
 def is_system_path(path):
-    """Controlla se il percorso fa parte delle directory di sistema."""
     return any(path.startswith(system_dir) for system_dir in SYSTEM_DIRS)
 
-def apri_file(percorso_file, tipo_file):
-    """Apre il file con uno dei programmi associati al tipo di file."""
-    programmi = PROGRAMMI_APERTURA.get(tipo_file, [])
-    for programma in programmi:
+def open_file(file_path, file_type):
+    programs = OPEN_PROGRAMS.get(file_type, [])
+    for program in programs:
         try:
-            subprocess.run(f"{programma} {percorso_file}", shell=True, check=True)
+            subprocess.run(f"{program} {file_path}", shell=True, check=True)
             break
         except subprocess.CalledProcessError:
             continue
     else:
-        print(f"Non è stato possibile aprire il file {percorso_file} con i programmi disponibili.")
+        print(f"Could not open file {file_path} with available programs.")
 
-def filtra_per_data(percorso_file, filtro_data):
-    """Filtra i file in base alla data di modifica."""
-    ora_corrente = time.time()
-    data_modifica = os.path.getmtime(percorso_file)
+def filter_by_date(file_path, date_filter):
+    current_time = time.time()
+    modification_time = os.path.getmtime(file_path)
 
-    if filtro_data == '24h':
-        return ora_corrente - data_modifica <= 24 * 3600
-    elif filtro_data == 'mese':
-        return ora_corrente - data_modifica <= 30 * 24 * 3600
-    elif filtro_data == 'anno':
-        return ora_corrente - data_modifica <= 365 * 24 * 3600
+    if date_filter == '24h':
+        return current_time - modification_time <= 24 * 3600
+    elif date_filter == 'month':
+        return current_time - modification_time <= 30 * 24 * 3600
+    elif date_filter == 'year':
+        return current_time - modification_time <= 365 * 24 * 3600
     else:
         return True
 
-def cerca_file(percorso, tipo_file=None, estensione=None, nome=None, ricorsivo=True, filtro_data=None):
-    for radice, dir, file in os.walk(percorso):
-        if not ricorsivo:
-            del dir[:]
+def search_files(path, file_type=None, extension=None, name=None, recursive=True, date_filter=None):
+    for root, dirs, files in os.walk(path):
+        if not recursive:
+            del dirs[:]
         
-        # Escludi le directory di sistema
-        dir[:] = [d for d in dir if not is_system_path(os.path.join(radice, d))]
+        dirs[:] = [d for d in dirs if not is_system_path(os.path.join(root, d))]
 
-        for file in file:
-            percorso_file = os.path.join(radice, file)
-            if is_system_path(percorso_file):
+        for file in files:
+            file_path = os.path.join(root, file)
+            if is_system_path(file_path):
                 continue
 
-            if estensione and not file.endswith(estensione):
+            if extension and not file.endswith(extension):
                 continue
             
-            if tipo_file and not any(file.endswith(ext) for ext in TIPI_DI_FILE.get(tipo_file, [])):
+            if file_type and not any(file.endswith(ext) for ext in FILE_TYPES.get(file_type, [])):
                 continue
             
-            if nome and nome not in file:
+            if name and name not in file:
                 continue
             
-            if filtro_data and not filtra_per_data(percorso_file, filtro_data):
+            if date_filter and not filter_by_date(file_path, date_filter):
                 continue
             
-            print(percorso_file)
-            apri_file(percorso_file, tipo_file)
+            print(file_path)
+            open_file(file_path, file_type)
 
 def main():
-    parser = argparse.ArgumentParser(description="Trova file nel sistema simile al comando find di Linux e aprili con programmi specifici.")
-    parser.add_argument("percorso", help="Il percorso di directory dove iniziare la ricerca")
-    parser.add_argument("-t", "--tipo-file", help="Filtra per tipo di file (es. immagine, video, documento, audio, archivio, server)")
-    parser.add_argument("-e", "--estensione", help="Filtra i file per estensione")
-    parser.add_argument("-n", "--nome", help="Filtra i file per nome")
-    parser.add_argument("-r", "--no-ricorsivo", help="Cerca non ricorsivamente nelle directory", action="store_true", default=False)
-    parser.add_argument("-f", "--filtro-data", help="Filtra i file per data di modifica (24h, mese, anno)")
+    parser = argparse.ArgumentParser(description="Find and open files similar to the Linux find command.")
+    parser.add_argument("path", help="The directory path to start the search")
+    parser.add_argument("-t", "--file-type", help="Filter by file type (e.g., image, video, document, audio, archive, server)")
+    parser.add_argument("-e", "--extension", help="Filter files by extension")
+    parser.add_argument("-n", "--name", help="Filter files by name")
+    parser.add_argument("-r", "--no-recursive", help="Search non-recursively in directories", action="store_true", default=False)
+    parser.add_argument("-f", "--date-filter", help="Filter files by modification date (24h, month, year)")
 
     args = parser.parse_args()
     
-    cerca_file(
-        args.percorso, tipo_file=args.tipo_file, estensione=args.estensione, nome=args.nome, ricorsivo=not args.no_ricorsivo, filtro_data=args.filtro_data
+    search_files(
+        args.path, file_type=args.file_type, extension=args.extension, name=args.name, recursive=not args.no_recursive, date_filter=args.date_filter
     )
 
 if __name__ == "__main__":
     main()
+
