@@ -1,6 +1,6 @@
 # SEARCH 🔎
 
-#![magnifying_glass_emoji_transparent](https://github.com/mgxy0/Search/assets/127632468/b1531e48-e10f-4d0c-b5d9-f21a924b23f5)
+![magnifying_glass_no_background](https://github.com/mgxy0/Search/assets/127632468/0cada1bf-ef58-448d-8799-af9a3f7ddec4)
 
 This Python script allows you to search for files on your system with various filters and copy them automatically to a folder created on the desktop. It is designed to function similarly to the `find` command in Linux.
 
