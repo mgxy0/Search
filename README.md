@@ -27,7 +27,7 @@ This Python script allows you to search for files on your system with various fi
    ```
 3. Run the script:
    ```sh
-   python search.py [options]
+   python3 search.py [options]
    ```
 
 ## Usage ⚙️
